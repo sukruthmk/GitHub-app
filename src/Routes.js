@@ -5,6 +5,7 @@ import Callback from "./components/callback/callback";
 import Home from "./components/home/home.js";
 import Login from "./components/login/login";
 import SecuredRoute from "./components/common/securedRoute/securedRoute";
+import Starred from "./components/starred/starred";
 
 class Routes extends Component {
   render() {
@@ -24,6 +25,12 @@ class Routes extends Component {
             exact
             path="/"
             component={Home}
+            checkingSession={checkingSession}
+          />
+          <SecuredRoute
+            exact
+            path="/starred"
+            component={Starred}
             checkingSession={checkingSession}
           />
         </Switch>

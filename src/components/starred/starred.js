@@ -18,7 +18,7 @@ const Content = styled.div`
   margin: auto;
 `;
 
-class Home extends Component {
+class Starred extends Component {
   render() {
     const { error, loading, repositories, loadMore } = this.props;
     return (
@@ -41,26 +41,34 @@ class Home extends Component {
 }
 
 export default graphql(GET_REPOSITORIES, {
-  props: ({ data: { error, loading, search, fetchMore } }) => {
+  props: ({ data: { error, loading, viewer, fetchMore } }) => {
+    let starredRepositories = null;
+    if (viewer) {
+      starredRepositories = viewer.starredRepositories;
+    }
     return {
-      repositories: search ? search.nodes : null,
+      repositories: starredRepositories ? starredRepositories.nodes : null,
       loading,
       error,
       loadMore: () =>
         fetchMore({
-          variables: { after: search.pageInfo.endCursor },
+          variables: { after: starredRepositories.pageInfo.endCursor },
           updateQuery: (previousResult = {}, { fetchMoreResult = {} }) => {
-            const previousSearch = previousResult.search || {};
-            const currentSearch = fetchMoreResult.search || {};
+            const previousSearch =
+              previousResult.viewer.starredRepositories || {};
+            const currentSearch =
+              fetchMoreResult.viewer.starredRepositories || {};
             const previousNodes = previousSearch.nodes || [];
             const currentNodes = currentSearch.nodes || [];
             // Specify how to merge new results with previous results
             return {
-              ...previousResult,
-              search: {
-                ...previousSearch,
-                nodes: [...previousNodes, ...currentNodes],
-                pageInfo: currentSearch.pageInfo
+              viewer: {
+                ...previousResult,
+                starredRepositories: {
+                  ...previousSearch,
+                  nodes: [...previousNodes, ...currentNodes],
+                  pageInfo: currentSearch.pageInfo
+                }
               }
             };
           }
@@ -70,4 +78,4 @@ export default graphql(GET_REPOSITORIES, {
   options: {
     notifyOnNetworkStatusChange: true
   }
-})(Home);
+})(Starred);
