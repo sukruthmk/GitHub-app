@@ -1,10 +1,10 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 import styled from "styled-components";
 
 import auth from "../auth/auth";
+import { getClient } from "../graphql/graphql";
 import Loading from "../loading/loading";
 import NavBar from "../navbar/navbar";
 
@@ -23,13 +23,15 @@ function SecuredRoute(props) {
           window.location.href = "/login";
           return <div />;
         }
+
+        const client = getClient();
         return (
-          <React.Fragment>
+          <ApolloProvider client={client}>
             <NavBar />
             <StyledDiv>
               <Component />
             </StyledDiv>
-          </React.Fragment>
+          </ApolloProvider>
         );
       }}
     />

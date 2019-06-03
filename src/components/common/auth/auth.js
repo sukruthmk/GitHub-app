@@ -66,6 +66,10 @@ class Auth {
     }
     return false;
   }
+
+  getToken() {
+    return this.token;
+  }
 }
 
 const auth = new Auth();
