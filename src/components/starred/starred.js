@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { graphql, compose } from "react-apollo";
 import { gql } from "apollo-boost";
-import { Button } from "react-bootstrap";
+import { Alert, Button } from "react-bootstrap";
 import styled from "styled-components";
 
 import { ADD_STAR, GET_REPOSITORIES, REMOVE_STAR } from "./api";
@@ -55,6 +55,14 @@ class Starred extends Component {
         {!loading && repositories && (
           <React.Fragment>
             <SearchBar onChange={this.hanleChange} search={this.state.search} />
+            <Container>
+              <Content>
+                <Alert variant="danger">
+                  Some repositories may have restriction for starring and
+                  unstarring through GitHub Oauth API. So may not work.
+                </Alert>
+              </Content>
+            </Container>
             <RepositoriesList
               repositories={repositories}
               addStar={addStar}
