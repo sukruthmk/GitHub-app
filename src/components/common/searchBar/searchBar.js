@@ -15,7 +15,7 @@ const Content = styled.div`
   margin: auto;
 `;
 
-class SearchBar extends React.Component {
+class SearchBar extends React.PureComponent {
   render() {
     const { onChange, search } = this.props;
     return (
