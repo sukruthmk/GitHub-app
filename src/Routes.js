@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 
-import Login from "./components/login/login";
 import Callback from "./components/callback/callback";
+import Home from "./components/home/home.js";
+import Login from "./components/login/login";
+import SecuredRoute from "./components/common/securedRoute/securedRoute";
 
 class Routes extends Component {
   render() {
@@ -17,6 +19,12 @@ class Routes extends Component {
             render={() => {
               return <Callback postCallback={postCallback} />;
             }}
+          />
+          <SecuredRoute
+            exact
+            path="/"
+            component={Home}
+            checkingSession={checkingSession}
           />
         </Switch>
       </React.Fragment>

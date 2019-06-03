@@ -10,6 +10,7 @@ class Auth {
     this.clientId = GITHUB_CLIENT_ID;
     this.clientSecret = GITHUB_CLIENT_SECRET;
     this.redirectURI = GITHUB_REDIRECT_URI;
+    this.token = null;
   }
 
   getAuthUrl() {
@@ -43,6 +44,13 @@ class Auth {
 
   setSession(token) {
     this.token = token;
+  }
+
+  isAuthenticated() {
+    if (this.token) {
+      return true;
+    }
+    return false;
   }
 }
 
