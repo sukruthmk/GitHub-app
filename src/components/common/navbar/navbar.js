@@ -1,5 +1,12 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
+import styled from "styled-components";
+
+import Profile from "../profile/profile";
+
+const StyledSpan = styled.span`
+  margin-left: 15px;
+`;
 
 function NavBar() {
   return (
@@ -10,7 +17,10 @@ function NavBar() {
         <Nav.Link href="/starred">Starred</Nav.Link>
       </Nav>
       <Nav>
-        <Nav.Link href="/logout">Logout</Nav.Link>
+        <Nav.Link href="/logout">
+          <Profile />
+          <StyledSpan>Logout</StyledSpan>
+        </Nav.Link>
       </Nav>
     </Navbar>
   );
