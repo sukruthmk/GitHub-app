@@ -125,7 +125,10 @@ export default compose(
                   viewerHasStarred
                 }
               `,
-              data: { viewerHasStarred: true, __typename: "Repository" }
+              data: {
+                viewerHasStarred: true,
+                __typename: "Repository"
+              }
             });
           }
         })
@@ -144,7 +147,10 @@ export default compose(
                   viewerHasStarred
                 }
               `,
-              data: { viewerHasStarred: false, __typename: "Repository" }
+              data: {
+                viewerHasStarred: false,
+                __typename: "Repository"
+              }
             });
           }
         })
