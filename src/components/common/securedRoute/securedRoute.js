@@ -1,11 +1,19 @@
 import React from "react";
 import { Route } from "react-router-dom";
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "react-apollo";
+import styled from "styled-components";
+
 import auth from "../auth/auth";
 import Loading from "../loading/loading";
 import NavBar from "../navbar/navbar";
 
+const StyledDiv = styled.div`
+  margin-top: 100px;
+`;
+
 function SecuredRoute(props) {
-  const { path, checkingSession } = props;
+  const { component: Component, path, checkingSession } = props;
   return (
     <Route
       path={path}
@@ -18,6 +26,9 @@ function SecuredRoute(props) {
         return (
           <React.Fragment>
             <NavBar />
+            <StyledDiv>
+              <Component />
+            </StyledDiv>
           </React.Fragment>
         );
       }}
