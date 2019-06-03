@@ -17,7 +17,7 @@ class Auth {
   getAuthUrl() {
     return `https://github.com/login/oauth/authorize?client_id=${
       this.clientId
-    }&scope=user&redirect_uri=${this.redirectURI}`;
+    }&scope=user%20public_repo&redirect_uri=${this.redirectURI}`;
   }
 
   handleAuthentication(code) {

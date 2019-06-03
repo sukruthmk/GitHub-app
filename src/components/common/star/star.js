@@ -1,7 +1,7 @@
 import React from "react";
 
-import Solid from './solid';
-import Regular from './regular';
+import Solid from "./solid";
+import Regular from "./regular";
 
 class Star extends React.PureComponent {
   render() {
@@ -9,17 +9,9 @@ class Star extends React.PureComponent {
     return (
       <React.Fragment>
         {starred ? (
-          <Solid
-            onClick={() => {
-              removeStar();
-            }}
-          />
+          <Solid onClick={removeStar} />
         ) : (
-          <Regular
-            onClick={() => {
-              addStar();
-            }}
-          />
+          <Regular onClick={addStar} />
         )}
       </React.Fragment>
     );
