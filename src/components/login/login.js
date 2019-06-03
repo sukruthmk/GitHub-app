@@ -34,7 +34,7 @@ class Login extends React.PureComponent {
           <TextContainer>
             <h1>Welcome To GitKoj</h1>
             <p>
-              A simple application star, search and unstar github repositories
+              A simple application to star, search and unstar github repositories
             </p>
           </TextContainer>
           <MainContent>

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 
 import Login from "./components/login/login";
-import Callback from "./components/common/callback/callback";
+import Callback from "./components/callback/callback";
 
 class Routes extends Component {
   render() {

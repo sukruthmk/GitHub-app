@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import Loader from "react-loader-spinner";
 import "./loading.css";
 
-class Loading extends Component {
+class Loading extends React.PureComponent {
   render() {
     return (
       <div className="loading-container">
