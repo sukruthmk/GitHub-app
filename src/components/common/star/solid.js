@@ -10,6 +10,8 @@ class Solid extends React.PureComponent {
       <React.Fragment>
         <FontAwesomeIcon
           icon={faStar}
+          size="lg"
+          color="yellow"
           onClick={() => {
             onClick();
           }}

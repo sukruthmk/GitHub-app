@@ -10,6 +10,7 @@ class Regular extends React.PureComponent {
       <React.Fragment>
         <FontAwesomeIcon
           icon={faStar}
+          size="lg"
           onClick={() => {
             onClick();
           }}
