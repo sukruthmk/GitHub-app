@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { ADD_STAR, GET_REPOSITORIES, REMOVE_STAR } from "./api";
 import Loading from "../common/loading/loading";
 import RepositoriesList from "../common/repositoriesList/repositoriesList";
+import SearchBar from "../common/searchBar/searchBar";
 
 const Container = styled.div`
   margin-top: 30px;
@@ -20,21 +21,40 @@ const Content = styled.div`
 `;
 
 class Starred extends Component {
+  state = {
+    search: ""
+  };
+
+  hanleChange = e => {
+    const value = e.target.value;
+    this.setState({
+      search: value
+    });
+  };
+
+  filterRepo = repositories => {
+    const { search } = this.state;
+    let filteredResult = repositories;
+    if (search) {
+      filteredResult = repositories.filter(function(repo) {
+        const { nameWithOwner } = repo;
+        return nameWithOwner.toLowerCase().includes(search.toLowerCase());
+      });
+    }
+
+    return filteredResult;
+  };
+
   render() {
-    const {
-      addStar,
-      error,
-      loading,
-      repositories,
-      loadMore,
-      removeStar
-    } = this.props;
+    const { addStar, error, loading, loadMore, removeStar } = this.props;
+    const repositories = this.filterRepo(this.props.repositories);
     return (
       <div>
         {error && <div>{error}</div>}
         {loading && <Loading />}
         {!loading && repositories && (
           <React.Fragment>
+            <SearchBar onChange={this.hanleChange} search={this.state.search} />
             <RepositoriesList
               repositories={repositories}
               addStar={addStar}
