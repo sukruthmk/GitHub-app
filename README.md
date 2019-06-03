@@ -1,3 +1,21 @@
+Simple React app to display GitHub Repository, Star, UnStar and search
+
+Added these features
+- Star
+- UnStar
+- List all Repositories
+- List all starred repositories
+- GitHub login/logout
+
+Demo Link : https://gitkoj.netlify.com/login
+
+![](gitkoj.gif)
+
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
