@@ -12,6 +12,10 @@ class App extends React.Component {
     this.setState({ checkingSession: false });
   };
 
+  componentDidMount() {
+    this.setState({ checkingSession: false });
+  }
+
   render() {
     return (
       <Container>
