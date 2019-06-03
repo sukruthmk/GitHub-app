@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   GITHUB_CLIENT_ID,
   GITHUB_CLIENT_SECRET,
@@ -15,6 +16,33 @@ class Auth {
     return `https://github.com/login/oauth/authorize?client_id=${
       this.clientId
     }&scope=user&redirect_uri=${this.redirectURI}`;
+  }
+
+  handleAuthentication(code) {
+    return new Promise((resolve, reject) => {
+      const url = `http://localhost:9000/authenticate?code=${code}`;
+      axios
+        .get(url)
+        .then(response => {
+          const token = response.data;
+          // handle success
+          console.log(token);
+          if (!token) {
+            resolve(false);
+          }
+          this.setSession(token);
+          resolve(true);
+        })
+        .catch(error => {
+          // handle error
+          console.log(error);
+          reject(error);
+        });
+    });
+  }
+
+  setSession(token) {
+    this.token = token;
   }
 }
 

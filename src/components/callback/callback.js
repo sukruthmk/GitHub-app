@@ -10,10 +10,15 @@ class Callback extends Component {
     const code = getUrlParam("code", "");
     console.log(code);
     if (code) {
-        await auth.handleAuthentication(code);
+        const response = await auth.handleAuthentication(code);
+        if(response) {
+          // this.props.history.replace("/");
+          postCallback();
+        } else {
+          alert("Authentication Failed");
+          this.props.history.replace("/login");
+        }
     }
-    // this.props.history.replace("/");
-    // postCallback();
   }
 
   render() {
