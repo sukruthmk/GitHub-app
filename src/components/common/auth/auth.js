@@ -11,6 +11,7 @@ class Auth {
     this.clientSecret = GITHUB_CLIENT_SECRET;
     this.redirectURI = GITHUB_REDIRECT_URI;
     this.token = null;
+    this.getSession();
   }
 
   getAuthUrl() {
@@ -42,8 +43,21 @@ class Auth {
     });
   }
 
+  getSession() {
+    const token = localStorage.getItem("token");
+    if (token) {
+      this.token = token;
+    }
+  }
+
   setSession(token) {
     this.token = token;
+    localStorage.setItem("token", token);
+  }
+
+  signOut() {
+    localStorage.removeItem("token");
+    this.token = null;
   }
 
   isAuthenticated() {

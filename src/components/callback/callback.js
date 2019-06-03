@@ -12,7 +12,7 @@ class Callback extends Component {
     if (code) {
         const response = await auth.handleAuthentication(code);
         if(response) {
-          // this.props.history.replace("/");
+          this.props.history.replace("/");
           postCallback();
         } else {
           alert("Authentication Failed");
